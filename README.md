@@ -8,7 +8,7 @@
 5. [Usage](#usage)
 6. [User Story](#user-story)
 7. [Acceptance Criteria](#acceptance-criteria)
-8. [Screenshot Preview of Project](#screenshot-preview-of-project)
+8. [Video Preview of Project](#video-preview-of-project)
 9. [Source](#source)
 
 ## Title :
@@ -18,14 +18,17 @@
 ### *Employee Tracker*
 
 ## Description :
-* This project uses NodeJS, Inquirer, MySQL2, console.table package, and Heroku for deployment.
-* 
+* This project uses NodeJS, Inquirer, MySQL2, and npm dependencies.
+* This project is a command-line application that can manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
 ## Installation :
-The user needs to install Node and MySQL2 for this project. 
+- The user needs to install Node and MySQL2 for this project. 
 
 ## Usage :
--  
+- THe user needs to install the npm dependencies by inputting `npm install` into the directory terminal. 
+- Log in to MySQL by inputting `mysql -u root -p` into the terminal.
+- In the MySQL shell input `source db/schema.sql` to run the schema file, then `source db/seeds.sql` to populate the database. 
+- Run the program with `npm run start`.
 
 ## User Story :
 ```md
@@ -55,9 +58,9 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
-## Screenshot Preview of Project :
+## Video Preview of Project :
+[Video Preview]()
 
 
 ## Source :
-- GitHub Link: 
-- Deployed Link: 
+- GitHub Link: https://github.com/jeremy-fong/employee-tracker
