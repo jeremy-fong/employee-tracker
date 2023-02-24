@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "seed": "mysql -u root -p < ./db/schema.sql && node db/seeds.sql"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +14,7 @@
   "dependencies": {
     "console.table": "^0.10.0",
     "dotenv": "^16.0.3",
+    "figlet": "^1.5.2",
     "inquirer": "^8.2.4",
     "mysql2": "^3.0.1"
   }
