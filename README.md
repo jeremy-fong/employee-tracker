@@ -26,6 +26,7 @@
 
 ## Usage :
 - THe user needs to install the npm dependencies by inputting `npm install` into the directory terminal. 
+- Rename the `.envEXAMPLE` file to `.env` and input your MySQL password in the quotes, if you have one.
 - Log in to MySQL by inputting `mysql -u root -p` into the terminal.
 - In the MySQL shell input `source db/schema.sql` to run the schema file, then `source db/seeds.sql` to populate the database. 
 - Run the program with `npm run start`.
