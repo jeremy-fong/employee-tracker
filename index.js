@@ -126,7 +126,6 @@ function adderall() {
 function addEmployee() {
   db.connect((err) => {
     if (err) throw err
-
     inquirer
       .prompt([
         {
@@ -149,8 +148,8 @@ function addEmployee() {
         db.query('INSERT INTO employee SET ?', answers, (err, res) => {
           if (err) throw err
           console.log('Employee added successfully.')
-          db.end()
         })
+        mainMenu()
       })
   })
 }
@@ -158,39 +157,36 @@ function addEmployee() {
 function updateEmpRole() {
   db.connect((err) => {
     if (err) throw err
-
-    db.query('SELECT * FROM employee', (err, employees) => {
+    db.query('SELECT * FROM employee', (err, employee) => {
       if (err) throw err
-
       inquirer
         .prompt([
           {
             type: 'list',
             name: 'employee',
-            message: "Which employee's role do you want to update? ",
-            choices: employees.map(
-              (employee) => `${employee.first_name} ${employee.last_name}`
-            ),
-            type: 'input',
-            name: 'role_id',
-            message: 'What is the new role ID for this employee?',
+            message: "Which employee do you want to update?",
+            choices: employee.map((employee) => `${employee.first_name} ${employee.last_name}`),
           },
         ])
         .then((answers) => {
-          const employee = employees.find(
-            (employee) =>
-              `${employee.first_name} ${employee.last_name}` ===
-              answers.employee
-          )
-
-          db.query(
-            'UPDATE employee SET role_id = ? WHERE id= ?',
-            [answers.role_id, employee.id],
-            (err, res) => {
+          const employeeID = answers.employee;
+          db.query('SELECT * FROM role', (err, role) => {
               if (err) throw err
-              console.log('Employee updated successfully.')
-            }
-          )
+              inquirer
+                .prompt([
+                  {
+                    type: 'input',
+                    name: 'role_id',
+                    message: 'What is the role for this employee?',
+                    choices: role.map((role) => `${role.title} ${role.id}`),
+                  },
+                ])
+        .then((answers) => 
+          db.query('UPDATE employee SET role_id = ? WHERE id = ?',
+          [answers.role_id, employeeID]))
+        .then(() => console.log('Employee updated successfully.'))
+        .then(() => mainMenu())
+            })
         })
     })
   })
